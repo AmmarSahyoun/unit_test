@@ -1,1 +1,1 @@
-vcsAssignment
+Design an automated unit test case that runs entirely in memory
