@@ -1,3 +1,3 @@
-print(" i love python")
-print(" i am learning Git")
-print("i want learn more")
+print(" I love python")
+print(" I can :) ")
+print("I want learn more")
