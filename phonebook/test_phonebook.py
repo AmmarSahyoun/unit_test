@@ -3,8 +3,8 @@ from phonebook import PhoneBook
 
 
 class PhoneBookTest(unittest.TestCase):
-
-    def setUp(self) -> None: # create instance in the parent class that other functions can use
+    # create instance in the parent class that other functions can use
+    def setUp(self) -> None:
         self.phonebook = PhoneBook()
 
     def test_lookup_by_name(self):
@@ -20,3 +20,6 @@ class PhoneBookTest(unittest.TestCase):
 
     def test_empty_phonebook_is_consistent(self):
         self.assertTrue(self.phonebook.is_consistent())
+
+
+# python -m unittest   unit test in command line
