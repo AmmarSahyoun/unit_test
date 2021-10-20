@@ -1,5 +1,5 @@
 class Employee:
-    raise_amt = 1.05
+
     def __init__(self, first, last, pay):
         self._first = first
         self._last = last
@@ -23,7 +23,7 @@ class Employee:
         return "{} {}".format(self._first, self._last)
 
     def apply_raise(self):
-        self._pay = int(self._pay * self.raise_amt)
+        self._pay = int(self._pay * self._raise_amt)
         return self._pay
 
     @property
