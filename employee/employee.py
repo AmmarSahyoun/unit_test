@@ -26,4 +26,6 @@ class Employee:
         self._pay = int(self._pay * self.raise_amt)
         return self._pay
 
-
+    @property
+    def  pay(self):
+        return self._pay
