@@ -1,8 +1,16 @@
 import unittest
 from employee import Employee
+from unittest.mock import patch # use it as decorater/context manager
 
 class TestEmployee(unittest.TestCase):
 
+    @classmethod
+    def setUpClass(cls): #run once
+        print("setupClass")
+
+    @classmethod
+    def tearDownClass(cls): #run once
+        print("teardownclass")
 
     def setUp(self): # run before each test
         print('setUp')
@@ -38,6 +46,23 @@ class TestEmployee(unittest.TestCase):
         self.emp2.apply_raise()
         self.assertEqual(self.emp1.pay, 36750 )
         self.assertEqual(self.emp2.pay, 63000)
+
+    # Accessing link
+    def test_monthly_schedule(self):
+        with patch("employee.requests.get") as mocked_get:
+            mocked_get.return_value.ok = True
+            mocked_get.return_value.text = "Success"
+
+            schedule=self.emp1.monthly_schedule('May')
+            mocked_get.assert_called_with('http://conpany.com/Sahyoun/May')
+            self.assertEqual(schedule, 'Success')
+
+                # In case of failed response
+            mocked_get.return_value.ok = False
+
+            schedule = self.emp2.monthly_schedule('June')
+            mocked_get.assert_called_with('http://conpany.com/Green/June')
+            self.assertEqual(schedule, 'Bad Response!')
 
 if __name__== '__main__':
     unittest.main()

@@ -1,3 +1,6 @@
+import requests
+
+
 class Employee:
 
     def __init__(self, first, last, pay):
@@ -29,3 +32,10 @@ class Employee:
     @property
     def  pay(self):
         return self._pay
+
+    def monthly_schedule(self, month):
+        response=requests.get(f"http://conpany.com/{self._last}/{month}")
+        if response.ok:
+            return response.text
+        else:
+            return "Bad Response!"
