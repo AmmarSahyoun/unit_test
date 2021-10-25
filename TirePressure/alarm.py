@@ -1,18 +1,20 @@
-import random
+from sensor import Sensor
 
-class Sensor(object):
-    # The reading of the pressure value from the sensor is simulated.
-    # The focus of the example is on the other class.
 
-    _OFFSET = 16
+class Alarm:
 
-    def sample_pressure(self):
-        pressure_telemetry_value = self.simulate_pressure()
-        return Sensor._OFFSET + pressure_telemetry_value
+    def __init__(self, sensor=None):
+        self._low_pressure_threshold = 17
+        self._high_pressure_threshold = 21
+        self._sensor = sensor or Sensor()
+        self._is_alarm_on = False
 
-    @staticmethod
-    def simulate_pressure():
-        # simulate a real sensor in a real tire
-        pressure_telemetry_value = 6 * random.random() * random.random()
-        return pressure_telemetry_value
+    def check(self):
+        pressure = self._sensor.sample_tyre_pressure()
+        if pressure < self._low_pressure_threshold \
+                or self._high_pressure_threshold < pressure:
+            self._is_alarm_on = True
 
+    @property
+    def is_alarm_on(self):
+        return self._is_alarm_on
