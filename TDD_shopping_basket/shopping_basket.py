@@ -8,5 +8,4 @@ class Basket(object):
     items: List[Item]
 
     def total(self):
-
        return reduce(lambda subtotal, item: subtotal + (item.unit_price * item.quantity) , self.items, 0)
