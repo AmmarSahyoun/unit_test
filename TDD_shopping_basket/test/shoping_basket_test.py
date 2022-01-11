@@ -2,7 +2,7 @@ import unittest
 from item import Item
 from shopping_basket import Basket
 
-
+""" test class for shopping basket"""
 
 class ShopingBasketTest(unittest.TestCase):
     def test_empty_basket_total(self):
